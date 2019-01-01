@@ -18,7 +18,14 @@
   </property>
   <widget class="QWidget" name="MainWidget">
    <layout class="QGridLayout" name="gridLayout_6">
-    <item row="0" column="0">
+    <item row="1" column="5">
+     <widget class="QPushButton" name="closeBtn">
+      <property name="text">
+       <string>Close</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="6">
      <widget class="QTabWidget" name="tabs">
       <property name="currentIndex">
        <number>0</number>
@@ -319,7 +326,7 @@
          </widget>
         </item>
         <item row="3" column="0">
-         <spacer name="verticalSpacer">
+         <spacer name="spacePerm">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -507,7 +514,7 @@
          </widget>
         </item>
         <item row="5" column="0">
-         <spacer name="verticalSpacer_2">
+         <spacer name="spaceWorld">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -699,7 +706,7 @@
          </widget>
         </item>
         <item row="6" column="1">
-         <spacer name="verticalSpacer_3">
+         <spacer name="spaceNetwork">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -759,7 +766,7 @@
          </widget>
         </item>
         <item row="3" column="0">
-         <spacer name="verticalSpacer_4">
+         <spacer name="spaceMisc">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -776,14 +783,51 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QDialogButtonBox" name="btns">
-      <property name="standardButtons">
-       <set>QDialogButtonBox::Close|QDialogButtonBox::Open|QDialogButtonBox::Reset|QDialogButtonBox::Save</set>
-      </property>
-      <property name="centerButtons">
-       <bool>false</bool>
+     <widget class="QPushButton" name="resetBtn">
+      <property name="text">
+       <string>Reset</string>
       </property>
      </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="loadBtn">
+      <property name="text">
+       <string>Load</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <spacer name="spaceRL">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="3">
+     <widget class="QPushButton" name="saveBtn">
+      <property name="text">
+       <string>Save</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="4">
+     <spacer name="spaceSC">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
