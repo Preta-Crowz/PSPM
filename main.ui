@@ -18,13 +18,6 @@
   </property>
   <widget class="QWidget" name="MainWidget">
    <layout class="QGridLayout" name="gridLayout_6">
-    <item row="1" column="5">
-     <widget class="QPushButton" name="closeBtn">
-      <property name="text">
-       <string>Close</string>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="0" colspan="6">
      <widget class="QTabWidget" name="tabs">
       <property name="currentIndex">
@@ -35,93 +28,7 @@
         <string>Default</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="4" column="4" colspan="2">
-         <widget class="QSpinBox" name="maxTickTime">
-          <property name="minimum">
-           <number>-1</number>
-          </property>
-          <property name="maximum">
-           <number>2147483647</number>
-          </property>
-          <property name="value">
-           <number>60000</number>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0" colspan="3">
-         <widget class="QCheckBox" name="enforceWhitelist">
-          <property name="text">
-           <string>Enforce Whitelist</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="Lmotd">
-          <property name="text">
-           <string>MOTD</string>
-          </property>
-          <property name="buddy">
-           <cstring>motd</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1" colspan="5">
-         <widget class="QPlainTextEdit" name="motd"/>
-        </item>
-        <item row="3" column="3">
-         <widget class="QLabel" name="LplayerIdleTimeout">
-          <property name="text">
-           <string>Timeout</string>
-          </property>
-          <property name="buddy">
-           <cstring>playerIdleTimeout</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="2">
-         <widget class="QLabel" name="LserverName">
-          <property name="text">
-           <string>Server Name</string>
-          </property>
-          <property name="buddy">
-           <cstring>serverName</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLineEdit" name="serverName"/>
-        </item>
-        <item row="0" column="3" colspan="2">
-         <widget class="QLabel" name="LmaxPlayers">
-          <property name="text">
-           <string>Max Players</string>
-          </property>
-          <property name="buddy">
-           <cstring>maxPlayers</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <widget class="QCheckBox" name="onlineMode">
-          <property name="text">
-           <string>Online</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="5">
-         <widget class="QSpinBox" name="maxPlayers">
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>2147483647</number>
-          </property>
-          <property name="value">
-           <number>20</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" colspan="2">
+        <item row="0" column="0">
          <widget class="QLabel" name="Ldifficulty">
           <property name="text">
            <string>Difficulty</string>
@@ -131,7 +38,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="2">
+        <item row="0" column="1" colspan="2">
          <widget class="QSlider" name="difficulty">
           <property name="maximum">
            <number>3</number>
@@ -162,7 +69,40 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="2">
+        <item row="0" column="3" colspan="3">
+         <widget class="QLabel" name="LmaxPlayers">
+          <property name="text">
+           <string>Max Players</string>
+          </property>
+          <property name="buddy">
+           <cstring>maxPlayers</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="6">
+         <widget class="QSpinBox" name="maxPlayers">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>2147483647</number>
+          </property>
+          <property name="value">
+           <number>20</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="Lgamemode">
+          <property name="text">
+           <string>Gamemode</string>
+          </property>
+          <property name="buddy">
+           <cstring>gamemode</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" colspan="2">
          <widget class="QSlider" name="gamemode">
           <property name="maximum">
            <number>3</number>
@@ -178,38 +118,55 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0" colspan="2">
-         <widget class="QLabel" name="Lgamemode">
-          <property name="text">
-           <string>Gamemode</string>
-          </property>
-          <property name="buddy">
-           <cstring>gamemode</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0" colspan="3">
-         <widget class="QCheckBox" name="enableCommandBlock">
-          <property name="text">
-           <string>Command Blocks</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3">
-         <widget class="QCheckBox" name="forceGamemode">
-          <property name="text">
-           <string>Forced</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="4" colspan="2">
+        <item row="1" column="6">
          <widget class="QCheckBox" name="hardcore">
           <property name="text">
            <string>Hardcore</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="4" colspan="2">
+        <item row="2" column="0">
+         <widget class="QCheckBox" name="enableCommandBlock">
+          <property name="text">
+           <string>Command Blocks</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QCheckBox" name="whitelist">
+          <property name="text">
+           <string>Whitelist</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2" colspan="2">
+         <widget class="QCheckBox" name="enforceWhitelist">
+          <property name="text">
+           <string>Enforce Whitelist</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="6">
+         <widget class="QCheckBox" name="onlineMode">
+          <property name="text">
+           <string>Online</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="LplayerIdleTimeout">
+          <property name="text">
+           <string>Timeout</string>
+          </property>
+          <property name="buddy">
+           <cstring>playerIdleTimeout</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
          <widget class="QSpinBox" name="playerIdleTimeout">
           <property name="maximum">
            <number>2147483647</number>
@@ -219,20 +176,50 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0" colspan="2">
-         <widget class="QCheckBox" name="whitelist">
-          <property name="text">
-           <string>Whitelist</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="3">
+        <item row="3" column="3" colspan="2">
          <widget class="QLabel" name="LmaxTickTime">
           <property name="text">
            <string>Tick limit</string>
           </property>
           <property name="buddy">
            <cstring>maxTickTime</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="5" colspan="2">
+         <widget class="QSpinBox" name="maxTickTime">
+          <property name="minimum">
+           <number>-1</number>
+          </property>
+          <property name="maximum">
+           <number>2147483647</number>
+          </property>
+          <property name="value">
+           <number>60000</number>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="Lmotd">
+          <property name="text">
+           <string>MOTD</string>
+          </property>
+          <property name="buddy">
+           <cstring>motd</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QCheckBox" name="forceGamemode">
+          <property name="text">
+           <string>Forced</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" colspan="6">
+         <widget class="QPlainTextEdit" name="motd">
+          <property name="plainText">
+           <string>A Minecraft Server</string>
           </property>
          </widget>
         </item>
@@ -451,7 +438,7 @@
          <widget class="QLineEdit" name="generatorSettings"/>
         </item>
         <item row="2" column="5">
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="LspawnProtection">
           <property name="text">
            <string>Protection</string>
           </property>
@@ -565,7 +552,7 @@
            <string>View distance</string>
           </property>
           <property name="buddy">
-           <cstring>spinBox</cstring>
+           <cstring>viewDistance</cstring>
           </property>
          </widget>
         </item>
@@ -613,7 +600,7 @@
          </widget>
         </item>
         <item row="0" column="7">
-         <widget class="QSpinBox" name="spinBox">
+         <widget class="QSpinBox" name="viewDistance">
           <property name="minimum">
            <number>2</number>
           </property>
@@ -789,13 +776,6 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="loadBtn">
-      <property name="text">
-       <string>Load</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="1">
      <spacer name="spaceRL">
       <property name="orientation">
@@ -808,6 +788,13 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="loadBtn">
+      <property name="text">
+       <string>Load</string>
+      </property>
+     </widget>
     </item>
     <item row="1" column="3">
      <widget class="QPushButton" name="saveBtn">
@@ -829,14 +816,19 @@
       </property>
      </spacer>
     </item>
+    <item row="1" column="5">
+     <widget class="QPushButton" name="closeBtn">
+      <property name="text">
+       <string>Close</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>serverName</tabstop>
   <tabstop>allowFlight</tabstop>
   <tabstop>allowNether</tabstop>
-  <tabstop>difficulty</tabstop>
   <tabstop>tabs</tabstop>
  </tabstops>
  <resources/>
