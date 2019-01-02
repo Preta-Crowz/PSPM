@@ -14,13 +14,29 @@ for char in "abcdefghilmnpqrstw":
     qtList = qtList.replace("-"+char,char.upper())
 qtList = json.loads(qtList.replace(".p","P"))
 
-objAttr = {
+getObjAttr = {
     "QSlider": "value",
     "QSpinBox": "value",
     "QCheckBox": "isChecked",
     "QPlainTextEdit": "toPlainText",
     "QLineEdit": "text"
 }
+
+setObjAttr = {
+    "QSlider": "setValue",
+    "QSpinBox": "setValue",
+    "QCheckBox": "setChecked",
+    "QPlainTextEdit": "setPlainText",
+    "QLineEdit": "setText"
+}
+
+wType = [
+    "Default",
+    "Flat",
+    "Large Biomes",
+    "Amplified",
+    "Buffet"
+]
 
 
 
@@ -63,7 +79,7 @@ class pspm(QMainWindow, ui):
             if objType == "QComboBox":
                 value = obj.currentText().upper()
             else:
-                value = getattr(obj,objAttr[objType])()
+                value = getattr(obj,getObjAttr[objType])()
             if value is True:
                 value = "true"
             elif value is False:
@@ -74,6 +90,8 @@ class pspm(QMainWindow, ui):
                 value = value.replace("\'","\\\'")
             elif fileList[i] == "motd" and len(value) > 59:
                 value = value[:59]
+            elif fileList[i] == "level-type" and value == "LARGE BIOMES":
+                value = "LARGEBIOMES"
             base[fileList[i]] = value
         for prop in fileList:
             temp = [str(base[prop])]
@@ -86,6 +104,31 @@ class pspm(QMainWindow, ui):
         global qtList, fileList
         file = open(fileName,"r",encoding="utf-8")
         properties = file.read()
+        properties = properties.split("\n")
+        for prop in properties:
+            match = re.match("^(.+)\=(.*)$",prop)
+            if not match: continue
+            propName = match[1]
+            value = match[2]
+            if not propName in fileList: continue
+            i = fileList.index(match[1])
+            obj = getattr(self,qtList[i])
+            objType = re.match("\<class \'PyQt5\.QtWidgets\.(.*)\'\>",str(type(obj)))[1]
+            if objType == "QComboBox":
+                value = value[0] + value[1:].lower()
+                if value == "Largebiomes":
+                    value = "Large Biomes"
+                elif not value in wType:
+                    value = "Default"
+                index = wType.index(value)
+                obj.setCurrentIndex(index)
+            else:
+                if value == "true":
+                    value = True
+                elif value == "false":
+                    value = False
+                elif re.match("\d*",value)[0] != "": value = int(value)
+                getattr(obj,setObjAttr[objType])(value)
 
     def reset(self):
         self.load("default.properties")
