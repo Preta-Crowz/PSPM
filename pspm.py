@@ -2,12 +2,12 @@ import sys, json, time, re
 from PyQt5.QtWidgets import *
 from PyQt5 import uic, QtCore
 
-ui = uic.loadUiType("main.ui")[0]
+ui = uic.loadUiType("pspm.ui")[0]
 
-fileList = open("order.json","r",encoding="utf-8")
+fileList = open("assets/order.json","r",encoding="utf-8")
 fileList = json.load(fileList)
 
-qtList = open("order.json","r",encoding="utf-8")
+qtList = open("assets/order.json","r",encoding="utf-8")
 qtList = json.load(qtList)
 qtList = json.dumps(qtList)
 for char in "abcdefghilmnpqrstw":
@@ -66,12 +66,12 @@ class pspm(QMainWindow, ui):
         if fileName == "": return
         if not fileName.endswith(".properties"):
             fileName += ".properties"
-        data = open("base.properties","r",encoding="utf-8").read()
+        data = open("assets/base.properties","r",encoding="utf-8").read()
         temp = [time.asctime()]
         temp = temp + (["{}"] * (data.count("{}")-1))
         temp = "\",\"".join(temp)
         data = eval("data.format(\"{}\")".format(temp))
-        base = open("base.json","r",encoding="utf-8")
+        base = open("assets/base.json","r",encoding="utf-8")
         base = json.load(base)
         for i in range(41):
             obj = getattr(self,qtList[i])
@@ -131,7 +131,7 @@ class pspm(QMainWindow, ui):
                 getattr(obj,setObjAttr[objType])(value)
 
     def reset(self):
-        self.load("default.properties")
+        self.load("assets/default.properties")
 
 
 if __name__ == "__main__":
