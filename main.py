@@ -1,17 +1,28 @@
-import sys, json, time
+import sys, json, time, re
 from PyQt5.QtWidgets import *
 from PyQt5 import uic, QtCore
 
 ui = uic.loadUiType("main.ui")[0]
 
+fileList = open("order.json","r",encoding="utf-8")
+fileList = json.load(fileList)
+
 qtList = open("order.json","r",encoding="utf-8")
 qtList = json.load(qtList)
 qtList = json.dumps(qtList)
-fileList = open("order.json","r",encoding="utf-8")
-fileList = json.load(fileList)
 for char in "abcdefghilmnpqrstw":
     qtList = qtList.replace("-"+char,char.upper())
 qtList = json.loads(qtList.replace(".p","P"))
+
+objAttr = {
+    "QSlider": "value",
+    "QSpinBox": "value",
+    "QCheckBox": "isChecked",
+    "QPlainTextEdit": "toPlainText",
+    "QLineEdit": "text"
+}
+
+
 
 class pspm(QMainWindow, ui):
     def __init__(self):
@@ -34,7 +45,7 @@ class pspm(QMainWindow, ui):
         self.load(fileName)
 
     def btnSave(self):
-        global qtList, fileList
+        global qtList, fileList, objAttr
         fileName = QFileDialog.getSaveFileName(self,filter="*.properties")[0]
         if fileName == "": return
         if not fileName.endswith(".properties"):
@@ -48,18 +59,15 @@ class pspm(QMainWindow, ui):
         base = json.load(base)
         for i in range(41):
             obj = getattr(self,qtList[i])
-            if type(obj) == QSlider:
-                value = obj.value()
-            elif type(obj) == QSpinBox:
-                value = obj.value()
-            elif type(obj) == QCheckBox:
-                value = obj.isChecked()
-            elif type(obj) == QPlainTextEdit:
-                value = obj.toPlainText()
-            elif type(obj) == QLineEdit:
-                value = obj.text()
-            elif type(obj) == QComboBox:
+            objType = re.match("\<class \'PyQt5\.QtWidgets\.(.*)\'\>",str(type(obj)))[1]
+            if objType == "QComboBox":
                 value = obj.currentText().upper()
+            else:
+                value = getattr(obj,objAttr[objType])()
+            if value is True:
+                value = "true"
+            elif value is False:
+                value = "false"
             base[fileList[i]] = value
         for prop in fileList:
             temp = [str(base[prop])]
