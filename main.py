@@ -68,6 +68,12 @@ class pspm(QMainWindow, ui):
                 value = "true"
             elif value is False:
                 value = "false"
+            if fileList[i] == "resource-pack" or fileList[i] == "level-name":
+                value = value.replace(":","\\:")
+                value = value.replace("=","\\=")
+                value = value.replace("\'","\\\'")
+            elif fileList[i] == "motd" and len(value) > 59:
+                value = value[:59]
             base[fileList[i]] = value
         for prop in fileList:
             temp = [str(base[prop])]
