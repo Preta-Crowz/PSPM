@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>assets/icon.png</normaloff>assets/icon.png</iconset>
+    <normaloff>assets/icon.png</normaloff>icon.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -798,12 +798,62 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="credits">
+       <attribute name="title">
+        <string>Information</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="nameV">
+          <property name="text">
+           <string>PSPM 1.1</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="coded">
+          <property name="text">
+           <string>Coded by Preta(Shiro Ayame)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="qt">
+          <property name="text">
+           <string>Used Qt for GUI</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="copyright">
+          <property name="text">
+           <string>Copyright (C) 2017-2019 CrowZ
+Can be used under GPL 3.0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="gitBtn">
+          <property name="text">
+           <string>Github</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
     <item row="1" column="0">
      <widget class="QPushButton" name="resetBtn">
       <property name="text">
        <string>Reset</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="loadBtn">
+      <property name="text">
+       <string>Load</string>
       </property>
      </widget>
     </item>
@@ -820,10 +870,10 @@
       </property>
      </spacer>
     </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="loadBtn">
+    <item row="1" column="5">
+     <widget class="QPushButton" name="closeBtn">
       <property name="text">
-       <string>Load</string>
+       <string>Close</string>
       </property>
      </widget>
     </item>
@@ -846,13 +896,6 @@
        </size>
       </property>
      </spacer>
-    </item>
-    <item row="1" column="5">
-     <widget class="QPushButton" name="closeBtn">
-      <property name="text">
-       <string>Close</string>
-      </property>
-     </widget>
     </item>
    </layout>
   </widget>
