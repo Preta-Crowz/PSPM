@@ -1,8 +1,8 @@
-import sys, json, time, re
+import sys, json, time, re, webbrowser
 from PyQt5.QtWidgets import *
 from PyQt5 import uic, QtCore
 
-ui = uic.loadUiType("pspm.ui")[0]
+ui = uic.loadUiType("assets/pspm.ui")[0]
 
 fileList = open("assets/order.json","r",encoding="utf-8")
 fileList = json.load(fileList)
@@ -48,6 +48,7 @@ class pspm(QMainWindow, ui):
         self.loadBtn.clicked.connect(self.btnLoad)
         self.saveBtn.clicked.connect(self.btnSave)
         self.resetBtn.clicked.connect(self.reset)
+        self.gitBtn.clicked.connect(self.github)
 
     def btnClose(self):
         app.quit()
@@ -88,8 +89,11 @@ class pspm(QMainWindow, ui):
                 value = value.replace(":","\\:")
                 value = value.replace("=","\\=")
                 value = value.replace("\'","\\\'")
-            elif fileList[i] == "motd" and len(value) > 59:
-                value = value[:59]
+            elif fileList[i] == "motd":
+                if len(value) > 59:
+                    value = value[:59]
+                value = value.encode("raw_unicode_escape")
+                value = eval(str(value)[1:])
             elif fileList[i] == "level-type" and value == "LARGE BIOMES":
                 value = "LARGEBIOMES"
             base[fileList[i]] = value
@@ -114,7 +118,7 @@ class pspm(QMainWindow, ui):
             i = fileList.index(match[1])
             obj = getattr(self,qtList[i])
             objType = re.match("\<class \'PyQt5\.QtWidgets\.(.*)\'\>",str(type(obj)))[1]
-            if objType == "QComboBox":
+            if fileList[i] == "level-type":
                 value = value[0] + value[1:].lower()
                 if value == "Largebiomes":
                     value = "Large Biomes"
@@ -132,6 +136,9 @@ class pspm(QMainWindow, ui):
 
     def reset(self):
         self.load("assets/default.properties")
+
+    def github(self):
+        webbrowser.open("https://github.com/Preta-Crowz/PSPM")
 
 
 if __name__ == "__main__":
