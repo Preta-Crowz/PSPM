@@ -1,4 +1,9 @@
-import sys, json, time, re, webbrowser
+import sys, json
+from os import path
+from re import match
+from time import asctime
+from webbrowser import open as web
+from locale import getdefaultlocale
 from PyQt5.QtWidgets import *
 from PyQt5 import uic, QtCore
 
@@ -68,7 +73,7 @@ class pspm(QMainWindow, ui):
         if not fileName.endswith(".properties"):
             fileName += ".properties"
         data = open("assets/base.properties","r",encoding="utf-8").read()
-        temp = [time.asctime()]
+        temp = [asctime()]
         temp = temp + (["{}"] * (data.count("{}")-1))
         temp = "\",\"".join(temp)
         data = eval("data.format(\"{}\")".format(temp))
@@ -76,7 +81,7 @@ class pspm(QMainWindow, ui):
         base = json.load(base)
         for i in range(41):
             obj = getattr(self,qtList[i])
-            objType = re.match("\<class \'PyQt5\.QtWidgets\.(.*)\'\>",str(type(obj)))[1]
+            objType = match("\<class \'PyQt5\.QtWidgets\.(.*)\'\>",str(type(obj)))[1]
             if objType == "QComboBox":
                 value = obj.currentText().upper()
             else:
@@ -110,14 +115,14 @@ class pspm(QMainWindow, ui):
         properties = file.read()
         properties = properties.split("\n")
         for prop in properties:
-            match = re.match("^(.+)\=(.*)$",prop)
-            if not match: continue
-            propName = match[1]
-            value = match[2]
+            matched = match("^(.+)\=(.*)$",prop)
+            if not matched: continue
+            propName = matched[1]
+            value = matched[2]
             if not propName in fileList: continue
-            i = fileList.index(match[1])
+            i = fileList.index(matched[1])
             obj = getattr(self,qtList[i])
-            objType = re.match("\<class \'PyQt5\.QtWidgets\.(.*)\'\>",str(type(obj)))[1]
+            objType = match("\<class \'PyQt5\.QtWidgets\.(.*)\'\>",str(type(obj)))[1]
             if fileList[i] == "level-type":
                 value = value[0] + value[1:].lower()
                 if value == "Largebiomes":
@@ -131,18 +136,29 @@ class pspm(QMainWindow, ui):
                     value = True
                 elif value == "false":
                     value = False
-                elif re.match("\d*",value)[0] != "": value = int(value)
+                elif match("\d*",value)[0] != "": value = int(value)
                 getattr(obj,setObjAttr[objType])(value)
 
     def reset(self):
         self.load("assets/default.properties")
 
     def github(self):
-        webbrowser.open("https://github.com/Preta-Crowz/PSPM")
+        web("https://github.com/Preta-Crowz/PSPM")
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    base_path = path.abspath(".")
+    locale = getdefaultlocale()[0]
+    try:
+        lang_path = path.join(base_path, 'lang', 'Lang_{}.qm'.format(locale))
+        translator = QtCore.QTranslator(app)
+        translator.load(lang_path)
+    except:
+        lang_path = path.join(base_path, 'lang', 'Lang_en_US.qm')
+        translator = QtCore.QTranslator(app)
+        translator.load(lang_path)
+    app.installTranslator(translator)
     win = pspm()
     win.show()
     app.exec_()
