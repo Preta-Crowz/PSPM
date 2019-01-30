@@ -5,3 +5,4 @@ pspm.spec
 archive
 build-*
 PSPM
+test.properties

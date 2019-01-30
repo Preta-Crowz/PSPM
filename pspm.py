@@ -67,7 +67,7 @@ class pspm(QMainWindow, ui):
         self.load(fileName)
 
     def btnSave(self):
-        global qtList, fileList, objAttr
+        global qtList, fileList, objAttr, wType
         fileName = QFileDialog.getSaveFileName(self,filter="*.properties")[0]
         if fileName == "": return
         if not fileName.endswith(".properties"):
@@ -83,7 +83,8 @@ class pspm(QMainWindow, ui):
             obj = getattr(self,qtList[i])
             objType = match("\<class \'PyQt5\.QtWidgets\.(.*)\'\>",str(type(obj)))[1]
             if objType == "QComboBox":
-                value = obj.currentText().upper()
+                value = wType[obj.currentIndex()]
+                value = value.replace(" ","").upper()
             else:
                 value = getattr(obj,getObjAttr[objType])()
             if value is True:
