@@ -43,6 +43,20 @@ wType = [
     "Buffet"
 ]
 
+diffs = {
+    "peaceful": 0,
+    "easy": 1,
+    "normal": 2,
+    "hard": 3
+}
+
+gms = {
+    "survival": 0,
+    "creative": 1,
+    "adventure": 2,
+    "spetator": 3
+}
+
 
 
 class pspm(QMainWindow, ui):
@@ -137,7 +151,12 @@ class pspm(QMainWindow, ui):
                     value = True
                 elif value == "false":
                     value = False
-                elif match("\d*",value)[0] != "": value = int(value)
+                elif value in diffs:
+                    value = diffs[value]
+                elif value in gms:
+                    value = gms[value]
+                elif objType != "QLineEdit" and match("\d*",value)[0] != "": value = int(value)
+                print(objType)
                 getattr(obj,setObjAttr[objType])(value)
 
     def reset(self):
